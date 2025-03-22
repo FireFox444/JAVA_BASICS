@@ -1,0 +1,167 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class student
+{
+  
+  int std_no,std_sub1,std_sub2,std_sub3,tot,per;
+  String std_name;
+  
+  
+  void input()throws IOException
+  {
+    BufferedReader x=new BufferedReader(new InputStreamReader(System.in));
+  
+    System.out.print("ENTER STUDENT NO : ");
+    std_no=Integer.parseInt(x.readLine());
+    
+    System.out.print("ENTER STUDENT NAME : ");
+    std_name=x.readLine();
+    
+    System.out.print("ENTER MARKS SUB-1 : ");
+    std_sub1=Integer.parseInt(x.readLine());
+    
+    System.out.print("ENTER MARKS SUB-2 : ");
+    std_sub2=Integer.parseInt(x.readLine());
+    
+    System.out.print("ENTER MARKS SUB-3 : ");
+    std_sub3=Integer.parseInt(x.readLine());
+    
+  }
+  
+  void result()
+  {
+    tot=std_sub1+std_sub2+std_sub3;
+    per=(tot*100)/300;
+  }
+  
+  void marksheet()
+  {
+    System.out.println("\n\n STUDENT MARKSHEET  ");
+    System.out.println(" =================== ");
+    System.out.println(" STUDENT NO : "+std_no);
+    System.out.println(" STUDENT NAME : "+std_name);
+    System.out.println(" =================== ");
+    System.out.println(" MARK SUB1 : "+std_sub1);
+    System.out.println(" MARK SUB2 : "+std_sub2);
+    System.out.println(" MARK SUB3 : "+std_sub3);
+    System.out.println(" =================== ");
+    System.out.println(" TOTAL :"+tot+"\t PER :"+per);
+    System.out.println("\n\n");
+  }
+}
+
+
+
+ class pro18
+ {
+   public static void main(String s[])throws IOException
+   { 
+     int ch,i,k=0;
+     student detail[]=new student[20];
+     student aa=new student();
+    
+     for(i=0;i<20;i++)
+     {
+       detail[i]=new student();
+     }
+     
+     BufferedReader x=new BufferedReader(new InputStreamReader(System.in));
+     
+     do
+     {
+       System.out.println("\n\n1->NEW STUDENT ENTRY ");
+       System.out.println("2->CALCULATE STUDENT RESULT ");
+       System.out.println("3->DISPLAY SPECIFIC STUDENT'S FORMETED MARKSHEET");
+       System.out.println("4->DELETE STUDENT ENTRY ");
+       System.out.println("5->MODIFY STUDENT INFORMATION");
+       System.out.println("6->EXIT ");
+       
+       System.out.print("\nENTER CHOICE : ");
+       ch=Integer.parseInt(x.readLine());
+       
+       if(ch==1)
+       {
+         detail[k].input();
+         System.out.println("\nK : "+k);
+       }
+       else if(ch==2)
+       {
+         for(i=0;i<k;i++)
+         {
+           detail[i].result();
+         }
+       }
+       else if(ch==3)
+       {
+         System.out.print("\n\nENTER STUDENT NO : ");
+         int a=Integer.parseInt(x.readLine());
+         
+         for(i=0;i<k;i++)
+         {
+           System.out.println("STUDENT NO : "+detail[i].std_no);
+           
+           if(detail[i].std_no==a)
+           {
+             detail[i].marksheet();
+           }
+         }
+       }
+       else if(ch==4)
+       {
+         System.out.print("\n\nENTER STUDENT NO : ");
+         int a=Integer.parseInt(x.readLine());
+         
+         for(i=0;i<k;i++)
+         {
+           System.out.println("STUDENT NO : "+detail[i].std_no);
+           
+           if(detail[i].std_no==a)
+           {
+             detail[i].std_no=0;
+             System.out.println("DELETED SUCCESSFULLY: ");
+           }
+         }
+       }
+       else if(ch==5)
+       {
+         System.out.print("\n\nENTER STUDENT NO YOU WANT TO MODIFY: ");
+         int a=Integer.parseInt(x.readLine());
+       
+         for(i=0;i<k;i++)
+         {
+           if(detail[i].std_no==a)
+           {
+            System.out.print("\nENTER STUDENT NO : ");
+            detail[i].std_no=Integer.parseInt(x.readLine());
+    
+            System.out.print("ENTER STUDENT NAME : ");
+            detail[i].std_name=x.readLine();
+    
+            System.out.print("ENTER MARKS SUB-1 : ");
+            detail[i].std_sub1=Integer.parseInt(x.readLine());
+    
+            System.out.print("ENTER MARKS SUB-2 : ");
+            detail[i].std_sub2=Integer.parseInt(x.readLine());
+    
+            System.out.print("ENTER MARKS SUB-3 : ");
+            detail[i].std_sub3=Integer.parseInt(x.readLine());
+           }
+         }
+         
+       }
+       else if(ch==6)
+       {
+         break;
+       }
+       else
+       {
+         System.out.println("\n\n\tENTER VALID CHOICE");
+       }
+       
+       k=k+1;
+         
+     }while(ch!=6);    
+   }
+ }
